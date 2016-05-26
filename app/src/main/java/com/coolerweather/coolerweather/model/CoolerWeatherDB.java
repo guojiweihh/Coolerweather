@@ -30,7 +30,7 @@ public class CoolerWeatherDB {
 
     //获取CoolerWeatherDB的实例
     public synchronized static CoolerWeatherDB getInstance(Context context){
-        if(coolerWeatherDB!=null){
+        if(coolerWeatherDB==null){
             coolerWeatherDB=new CoolerWeatherDB(context);
         }
         return coolerWeatherDB;
@@ -75,7 +75,7 @@ public class CoolerWeatherDB {
     //从数据库读取某省下全部城市信息
     public List<City> loadCities(int provinceId){
         List<City> list=new ArrayList<City>();
-        Cursor cursor=db.query("City",null,"province_id=?",new String[] {String.valueOf(provinceId)},null,null,null);
+        Cursor cursor=db.query("City",null,"province_id = ?",new String[] { String.valueOf(provinceId) },null,null,null);
         if(cursor.moveToFirst()){
             do{
                 City city=new City();
@@ -103,7 +103,7 @@ public class CoolerWeatherDB {
     }
 
     //从数据库读取某城市下全部县信息
-    public List<County> loadCounty(int cityId){
+    public List<County> loadCounties(int cityId){
         List<County> list=new ArrayList<County>();
         Cursor cursor=db.query("County",null,"city_id=?",new String[] {String.valueOf(cityId)},null,null,null);
         if(cursor.moveToFirst()){
@@ -122,9 +122,5 @@ public class CoolerWeatherDB {
         return list;
 
     }
-
-
-
-
 
 }

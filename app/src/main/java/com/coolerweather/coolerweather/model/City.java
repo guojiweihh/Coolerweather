@@ -37,7 +37,7 @@ public class City {
     }
 
     public void setProvinceId(int provinceId) {
-        provinceId = provinceId;
+        this.provinceId = provinceId;
     }
 
 
